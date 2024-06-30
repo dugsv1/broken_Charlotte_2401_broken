@@ -1,0 +1,61 @@
+{
+    "python.defaultInterpreterPath": "/usr/local/bin/python",
+    "python.languageServer": "Pylance",
+    "jupyter.jupyterServerType": "local",
+    "jupyter.defaultKernel": "python3",
+    "[latex]": {
+      "editor.wordWrap": "on"
+    },
+    "latex-workshop.latex.recipes": [
+      {
+        "name": "latexmk (latexmkrc)",
+        "tools": [
+          "latexmk"
+        ]
+      },
+      {
+        "name": "pdflatex -> bibtex -> pdflatex*2",
+        "tools": [
+          "pdflatex",
+          "bibtex",
+          "pdflatex",
+          "pdflatex"
+        ]
+      }
+    ],
+    "latex-workshop.latex.tools": [
+      {
+        "name": "pdflatex",
+        "command": "pdflatex",
+        "args": [
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "%DOC%"
+        ]
+      },
+      {
+        "name": "bibtex",
+        "command": "bibtex",
+        "args": [
+          "%DOCFILE%"
+        ]
+      },
+      {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "-pdf",
+          "%DOC%"
+        ]
+      }
+    ],
+    "latex-workshop.latex.build.selectedRecipe": "pdflatex -> bibtex -> pdflatex*2",
+    "[python]": {
+      "editor.wordWrap": "off"
+    }
+  }
+  

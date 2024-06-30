@@ -1,0 +1,72 @@
+\chapter{Methodology}
+\label{chap:methodology}
+% Content for methodology
+
+
+Code 3 Strategist version 2.10.0.7478 \todo{Update with final C3S version} was used in this study. Code 3 Strategist is a simulation software that allows a user to input a set of incidents and simulate the hypothetical performance of their fire department. The simulation software takes into consideration:
+
+\begin{enumerate}
+    \item Station location
+    \item Apparatus types and staffing requirements
+    \item Personnel
+    \item Dispatch rules
+\end{enumerate}
+
+The software is capable of assigning a single, or multiple, apparatus staffed with personnel to an incident based on the department's dispatch rules. Apparatus and personnel are taken out of service while they are simulated as responding and working on scene, while the simulator continues to dispatch apparatus and personnel that are available for any subsequent 911 calls. The framework and rules are set by the user and the accuracy, or how closely the simulator resembles real life, is determined by these rules and how predictably the department is able to follow its written policies. 
+
+In complex systems, it is very common for a simulator to deviate from reality within an acceptable margin. Causes of these deviations can be:
+
+\begin{enumerate}
+    \item Pursuing absolute perfection in simulator performance, replicating real-life scenarios, eventually yields diminishing returns. Once researchers attain a level of proficiency deemed 'good enough,' allocating time to explore other study domains becomes a more productive endeavor.
+    \item Company officers often have to make small adjustments to a conventional response plan in order to better fit the current needs. For example:
+    \begin{itemize}
+        \item A company officer may elect to divert to a 911 call they are closer to while they are traveling to or from training.
+        \item A company officer may elect to assign themselves to an incident based on call notes to replace or assist another unit if they are closer.
+    \end{itemize}
+\end{enumerate}
+
+The goal of Code 3 Strategist is to mimic department policy as it is intended to be executed in a perfect world. It is up to the user to interpret the results and make inferences from the results, while taking into account potential deviations from the real world. The workflow and system methodology of Code 3 Strategist is drawn below.
+
+\begin{figure}[H]
+    \centering
+    \adjincludegraphics[width=0.85\textwidth, keepaspectratio=true, trim={{.02\height} {0} {.02\height} {.02\height}}, clip]{/app/graphics/C3s.png}
+    \caption{Visual representation of the logic and workflow with Code 3 Strategist.}
+    \label{fig:C3SWorkflow}  
+\end{figure}
+
+\section{Zoning Shapefiles}
+Two primary shapefiles were retrieved from the Charlotte Data Portal\citep{charlotte_data_portal} to classify the different regions used for growth modeling. The 2040 Zoning data source\footnote[1]{\url{https://data.charlottenc.gov/datasets/charlotte::charlotte-future-2040-policy-map-4/explore}} provided a comprehensive list of zoning labels that served as the initial foundation for building a complete list of zoning labels used in this study. From this starting point, additional labels were extrapolated from the current Zoning dataset\footnote[1]{\url{https://data.charlottenc.gov/datasets/charlotte::zoning-1/about}} to further enhance the shapefile layers, particularly for multifamily and residential areas. \todo{maps showing different zoning areas}
+
+One of the main challenges of this study was developing a method to classify or label defined regions consistently across current and future zoning maps. This consistency allows us to describe regions with similar characteristics, such as a 'Neighborhood.' By analyzing how the Neighborhood label changes in shape and size in the 2040 zoning map, we can predict future 911 calls by adjusting the typical 911 call volume found in a Neighborhood zone for expected growth over time. This process is repeated for all identified labels.
+
+The translation of current labels\cite{charlotte2024useregulations} to new labels required significant assistance from the Charlotte Planning Department. The zoning labels that exist in 2024, referred to as zoning descriptions, did not align with the labeling system used in 2021 to create the 2040 Future zoning labels. Fortunately, the Planning Department was able to recover the classification system\footnote[1]{the classification system was a shapefile with an attribute table of shape (11951, 2)} used in 2021 to generate the 2040 zoning plan. This data "crosswalk" is not publicly available, and any future requests for this data will need to be directed to the Charlotte Planning Department.
+
+\subsection{Handling data discrepencies}
+\todo{Ask Carl to help write out strategy for incomplete data. This would be a good place to discuss the many to many relationship of the tables used for zoning}
+
+
+\section{Future Growth Modeling}
+
+With the assistance of Miriam McManus, we shifted our approach to predicting 911 calls. Every 911 call, whether real or simulated, includes three essential components: the nature of the call, the location, and the time it occurred. The nature of the call specifies a particular issue, such as a breathing problem, which can be further generalized as a medical issue. Predicting call types at this level of specificity, based on historical data, led to an overestimation of working structure fires due to the high incidence of low-acuity fire calls being grouped similarly. To address this issue, we adopted a different approach to categorizing the nature of 911 calls.
+
+Instead of predicting specific "nature codes" based on historical data, we generalize 911 calls into broader categories. This methodology helps produce more accurate and meaningful predictions. The generalized categories are as follows:
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{p{0.3\textwidth} p{0.7\textwidth}}
+    \toprule
+    \textbf{Call Type} & \textbf{Response Level} \\
+    \midrule
+    Medical Call & Single Resource response \\
+    \midrule
+    \multirow{3}{=}{\shortstack[l]{Fire Incidents \\ Hazmat Incidents \\ Motor Vehicle\\ Accidents (MVA)}} &
+    Single engine company response \\
+    & Double engine company or two heavy asset responses \\
+    & Three or more company responses (large structure fires or major incidents) \\
+    \bottomrule
+    \end{tabular}
+    \caption{Generalized 911 Call Types and Response Levels}
+    \label{tab:911_calls}
+\end{table}
+ 
+By categorizing 911 calls in this manner, we can create more accurate and manageable predictions for future call volumes and types.

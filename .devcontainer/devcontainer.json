@@ -1,0 +1,38 @@
+{
+  "name": "Charlotte Fire 2024 Study",
+  "dockerComposeFile": "../compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/app",
+  "customizations": {
+      "vscode": {
+          "settings": {
+              "python.defaultInterpreterPath": "/usr/local/bin/python",
+              "jupyter.jupyterServerType": "local",
+              "jupyter.defaultKernel": "python3"
+              
+          },
+          "extensions": [
+            "ms-azuretools.vscode-docker",
+            "ms-python.debugpy",
+            "ms-python.python",
+            "ms-python.vscode-pylance",
+            "ms-toolsai.jupyter",
+            "ms-toolsai.jupyter-keymap",
+            "ms-toolsai.jupyter-renderers",
+            "ms-toolsai.vscode-jupyter-cell-tags",
+            "ms-toolsai.vscode-jupyter-slideshow",
+            "mechatroner.rainbow-csv",
+            "james-yu.latex-workshop",
+            "tomoki1207.pdf",
+            "ms-vscode-remote.remote-containers",
+            "ms-vscode-remote.remote-ssh",
+            "ms-vscode-remote.remote-ssh-edit",
+            "ms-vscode-remote.remote-wsl",
+            "ms-vscode-remote.vscode-remote-extensionpack",
+            "ms-vscode.live-server",
+            "ms-vscode.remote-explorer",
+            "ms-vscode.remote-server"
+          ]
+      }
+  }
+}

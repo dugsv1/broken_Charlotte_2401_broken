@@ -1,0 +1,91 @@
+\documentclass[12pt,letterpaper]{report}
+
+\usepackage{graphicx}     
+\usepackage{amsmath}      % For math
+\usepackage{hyperref}     % For hyperlinks
+\usepackage{geometry}     % For page layout
+\usepackage{float}        % For 'Here' command for figures and tables
+\usepackage{comment}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage[numbers]{natbib}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{setspace}
+\usepackage[normalem]{ulem}% For strikethrough
+\usepackage[symbol]{footmisc} % For footnotes with symbols
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{booktabs}      % For professional table formatting
+\usepackage{todonotes}
+\usepackage{capt-of}
+\pagestyle{fancy}
+
+
+\geometry{margin=1in}
+\captionsetup[figure]{skip=10pt} 
+\captionsetup[table]{skip=10pt}
+\captionsetup[longtable]{skip=10pt}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\titleformat{\chapter}[hang]
+  {\normalfont\huge\bfseries}
+  {\thechapter.}
+  {0.5em}
+  {\Huge}
+\titlespacing*{\chapter}{0pt}{15pt}{30pt}  % Adjust the second value to reduce the space before the chapter title
+
+\postdate{\par\vspace{1cm}\placesecondlogo\end{center}}
+
+\newcommand{\secondlogo}[2][]{%
+  \renewcommand\placesecondlogo{%
+    \includegraphics[#1]{#2}\par\medskip
+  }%
+}
+\newcommand{\placesecondlogo}{} 
+
+\author{Sven Dugojevic, Carl Niedner}
+\date{\today}
+\vspace{3cm}
+
+\fancyhead[L]{\includegraphics[height=.6cm]{/app/graphics/Levrum Logo.png}} 
+
+% Footnote symbols:
+% 1   asterisk        *   
+% 2   dagger          †   
+% 3   double dagger   ‡
+% 4   section symbol  §   
+% 5   paragraph       ¶   
+% 6   parallel lines  ‖
+% 7   two asterisks   **  
+% 8   two daggers     ††  
+% 9   two double daggers ‡‡
+% 0   no symbol
+
+\begin{document}
+
+\input{titlepage.tex}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\input{chapters/executive_summary.tex}
+\input{chapters/methodology.tex}
+\input{chapters/deployment.tex}
+\input{chapters/call_volume_analysis.tex}
+\input{chapters/projected_growth.tex}
+\input{chapters/conclusion.tex}
+\input{chapters/glossary_of_terms.tex}
+\input{bibliography.tex}
+
+\end{document}

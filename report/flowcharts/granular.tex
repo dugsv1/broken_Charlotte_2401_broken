@@ -1,0 +1,18 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning}
+
+\begin{document}
+\begin{tikzpicture}[node distance=2cm, every node/.style={rectangle, draw, minimum width=1.5cm, minimum height=1cm}]
+    % Nodes
+    \node (box1) {What};
+    \node (box2) [below of=box1] {Where};
+    \node (box3) [below of=box2] {When};
+    \node (box4) [right=4cm of box2] {911 Call};
+
+    % Arrows
+    \draw [->, ->] (box1.east) -- ++(1,0) |- ([xshift=-0.1cm]box4.west);
+    \draw [->, ->] (box2.east) -- ++(1,0) |- ([xshift=-0.1cm]box4.west);
+    \draw [->, ->] (box3.east) -- ++(1,0) |- ([xshift=-0.1cm]box4.west);
+\end{tikzpicture}
+\end{document}
